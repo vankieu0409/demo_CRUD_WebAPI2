@@ -6,18 +6,20 @@ public class InfoStudent
     private string nameStudent;
     private DateTime birth;
     private string nameClass;
+    private string classroom;
 
     public InfoStudent()
     {
 
     }
 
-    public InfoStudent(int idStudent, string nameStudent, DateTime birth, string nameClass)
+    public InfoStudent(int idStudent, string nameStudent, DateTime birth, string nameClass, string classroom)
     {
         this.idStudent = idStudent;
         this.nameStudent = nameStudent;
         this.birth = birth;
         this.nameClass = nameClass;
+        this.classroom = classroom;
     }
 
     public int IdStudent
@@ -42,5 +44,11 @@ public class InfoStudent
     {
         get => nameClass;
         set => nameClass = value ?? throw new ArgumentNullException(nameof(value));
+    }
+
+    public string Classroom
+    {
+        get => classroom;
+        set => classroom = value ?? throw new ArgumentNullException(nameof(value));
     }
 }

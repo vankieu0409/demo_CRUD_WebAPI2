@@ -44,12 +44,13 @@ public class ServiceShow
                 IdSV=std.IdStudent,
                 tenSv=std.Name,
                 ngaySinh=std.birth,
-                lopHoc=cls.NameClass
+                lopHoc=cls.NameClass,
+                phonghoc=cls.Classroom
             };
 
         foreach (var x in _lstTemp)
         {
-            InfoStudent sv=new InfoStudent(x.IdSV, x.tenSv, x.ngaySinh, x.lopHoc);
+            InfoStudent sv=new InfoStudent(x.IdSV, x.tenSv, x.ngaySinh, x.lopHoc,x.phonghoc);
             _lstStudentsShow.Add(sv);
         }
 
@@ -73,6 +74,7 @@ public class ServiceShow
         {
             Class cls = new Class();
             cls.NameClass=s.NameClass;
+            cls.Classroom = s.Classroom;
             clasService.Add(cls);
             clasService.Save();
             Student std = new Student();
@@ -104,6 +106,7 @@ public class ServiceShow
         {
             Class cls = new Class();
             cls.NameClass = s.NameClass;
+            cls.Classroom = s.Classroom;
             clasService.Add(cls);
             clasService.Save();
             Student std = _lstStudents[_lstStudents.FindIndex(c => c.IdStudent == s.IdStudent)];
