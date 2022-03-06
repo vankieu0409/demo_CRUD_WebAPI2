@@ -5,14 +5,14 @@ using demo_WebAPI2.Sevice.ModelsReturn;
 
 namespace demo_WebAPI2.Sevice;
 
-public class ServiceShow
+public class ServiceOfController
 {
     private IService<Class> clasService;
     IService<Student> studentService;
     private List<Student> _lstStudents;
     private List<Class> _lstClasses;
 
-    public ServiceShow()
+    public ServiceOfController()
     {
         clasService = new ServiceModels<Class>();
         _lstClasses = new List<Class>();
@@ -59,29 +59,29 @@ public class ServiceShow
 
     //
     // Them SV
-    public List<InfoStudent> AddInfoStudent(InfoStudent s)
+    public List<InfoStudent> AddInfoStudent(InfoStudent _infoStudent)
     {
-        if (_lstClasses.Any(c=>c.NameClass==s.NameClass))
+        if (_lstClasses.Any(c=>c.NameClass==_infoStudent.NameClass))
         {
             Student stNew = new Student();
-            stNew.IdStudent = s.IdStudent;
-            stNew.Name = s.NameStudent;
-            stNew.birth = s.Birth;
-            stNew.IdClass = _lstClasses.FirstOrDefault(c => c.NameClass == s.NameClass).IdClass;
+            stNew.IdStudent = _infoStudent.IdStudent;
+            stNew.Name = _infoStudent.NameStudent;
+            stNew.birth = _infoStudent.Birth;
+            stNew.IdClass = _lstClasses.FirstOrDefault(c => c.NameClass == _infoStudent.NameClass).IdClass;
             studentService.Add(stNew);
         }
         else
         {
             Class cls = new Class();
-            cls.NameClass=s.NameClass;
-            cls.Classroom = s.Classroom;
+            cls.NameClass=_infoStudent.NameClass;
+            cls.Classroom = _infoStudent.Classroom;
             clasService.Add(cls);
             clasService.Save();
             Student std = new Student();
-            std.IdStudent = s.IdStudent;
-            std.Name = s.NameStudent;
-            std.birth = s.Birth;
-            std.IdClass = clasService.GetList().FirstOrDefault(c => c.NameClass == s.NameClass).IdClass;
+            std.IdStudent = _infoStudent.IdStudent;
+            std.Name = _infoStudent.NameStudent;
+            std.birth = _infoStudent.Birth;
+            std.IdClass = clasService.GetList().FirstOrDefault(c => c.NameClass == _infoStudent.NameClass).IdClass;
             studentService.Add(std);
         }
         
@@ -91,29 +91,29 @@ public class ServiceShow
         return GetInfoStudents();
     }
 
-    public List<InfoStudent> EditInfoStudent(InfoStudent s)
+    public List<InfoStudent> EditInfoStudent(InfoStudent _infoStudent)
     {
-        if (_lstClasses.Any(c => c.NameClass == s.NameClass))
+        if (_lstClasses.Any(c => c.NameClass == _infoStudent.NameClass))
         {
-            Student stNew = _lstStudents[_lstStudents.FindIndex(c=>c.IdStudent==s.IdStudent)];
-            stNew.IdStudent = s.IdStudent;
-            stNew.Name = s.NameStudent;
-            stNew.birth = s.Birth;
-            stNew.IdClass = _lstClasses.FirstOrDefault(c => c.NameClass == s.NameClass).IdClass;
+            Student stNew = _lstStudents[_lstStudents.FindIndex(c=>c.IdStudent==_infoStudent.IdStudent)];
+            stNew.IdStudent = _infoStudent.IdStudent;
+            stNew.Name = _infoStudent.NameStudent;
+            stNew.birth = _infoStudent.Birth;
+            stNew.IdClass = _lstClasses.FirstOrDefault(c => c.NameClass == _infoStudent.NameClass).IdClass;
             studentService.Edit(stNew);
         }
         else
         {
             Class cls = new Class();
-            cls.NameClass = s.NameClass;
-            cls.Classroom = s.Classroom;
+            cls.NameClass = _infoStudent.NameClass;
+            cls.Classroom = _infoStudent.Classroom;
             clasService.Add(cls);
             clasService.Save();
-            Student std = _lstStudents[_lstStudents.FindIndex(c => c.IdStudent == s.IdStudent)];
-            std.IdStudent = s.IdStudent;
-            std.Name = s.NameStudent;
-            std.birth = s.Birth;
-            std.IdClass = clasService.GetList()[clasService.GetList().FindIndex(c=>c.NameClass==s.NameClass)].IdClass;
+            Student std = _lstStudents[_lstStudents.FindIndex(c => c.IdStudent == _infoStudent.IdStudent)];
+            std.IdStudent = _infoStudent.IdStudent;
+            std.Name = _infoStudent.NameStudent;
+            std.birth = _infoStudent.Birth;
+            std.IdClass = clasService.GetList()[clasService.GetList().FindIndex(c=>c.NameClass==_infoStudent.NameClass)].IdClass;
             studentService.Edit(std);
         }
         studentService.Save();
@@ -122,9 +122,9 @@ public class ServiceShow
         return GetInfoStudents();
     }
 
-    public List<InfoStudent> DeleteInfoStudent(int s)
+    public List<InfoStudent> DeleteInfoStudent(int idStudent)
     {
-        Student std = _lstStudents[_lstStudents.FindIndex(c => c.IdStudent == s)];
+        Student std = _lstStudents[_lstStudents.FindIndex(c => c.IdStudent == idStudent)];
         studentService.Delete(std);
         studentService.Save();
         GetDataClasses();

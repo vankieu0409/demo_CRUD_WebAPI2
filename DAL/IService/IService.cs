@@ -3,9 +3,9 @@
 public interface IService<T>
 {
     public List<T> GetList();
-    public string Add(T sp);
-    public string Edit(T sp);
-    public string Delete(T sp);
+    public string Add(T @object);
+    public string Edit(T @object);
+    public string Delete(T @object);
     public string Save();
 
 }

@@ -12,8 +12,8 @@ using demo_WebAPI2.DAL;
 namespace DAL.Migrations
 {
     [DbContext(typeof(DbWebContext))]
-    [Migration("20220304051952_kieu")]
-    partial class kieu
+    [Migration("20220306155434_kieu2")]
+    partial class kieu2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,12 +33,13 @@ namespace DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdClass"), 1L, 1);
 
                     b.Property<string>("Classroom")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(5)
+                        .HasColumnType("nvarchar(5)");
 
                     b.Property<string>("NameClass")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasKey("IdClass");
 
@@ -58,7 +59,8 @@ namespace DAL.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("birth")
                         .HasColumnType("datetime2");

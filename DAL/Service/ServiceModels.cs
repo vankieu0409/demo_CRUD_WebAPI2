@@ -4,11 +4,11 @@ namespace DAL.Service;
 
 public class ServiceModels<T>:IService<T> where T : class
 {
-    private DbWebContext _dnContext;
+    private DbWebContext _dbContext;
 
     public ServiceModels()
     {
-        _dnContext = new DbWebContext();
+        _dbContext = new DbWebContext();
     }
 
 
@@ -18,7 +18,7 @@ public class ServiceModels<T>:IService<T> where T : class
         try
         {
             
-            return _dnContext.Set<T>().ToList();
+            return _dbContext.Set<T>().ToList();
         }
         catch (Exception e)
         {
@@ -26,11 +26,11 @@ public class ServiceModels<T>:IService<T> where T : class
         }
     }
 
-    public string Add(T sp)
+    public string Add(T @object)
     {
         try
         {
-            _dnContext.Set<T>().Add(sp);
+            _dbContext.Set<T>().Add(@object);
             return "successful";
         }
         catch (Exception e)
@@ -39,11 +39,11 @@ public class ServiceModels<T>:IService<T> where T : class
         }
     }
 
-    public string Edit(T sp)
+    public string Edit(T @object)
     {
         try
         {
-            _dnContext.Set<T>().Update(sp);
+            _dbContext.Set<T>().Update(@object);
             return "successful";
         }
         catch (Exception e)
@@ -52,11 +52,11 @@ public class ServiceModels<T>:IService<T> where T : class
         }
     }
 
-    public string Delete(T sp)
+    public string Delete(T @object)
     {
         try
         {
-            _dnContext.Set<T>().Remove(sp);
+            _dbContext.Set<T>().Remove(@object);
             return "successful";
         }
         catch (Exception e)
@@ -69,7 +69,7 @@ public class ServiceModels<T>:IService<T> where T : class
     {
         try
         {
-            _dnContext.SaveChanges();
+            _dbContext.SaveChanges();
             return "successful";
         }
         catch (Exception e)

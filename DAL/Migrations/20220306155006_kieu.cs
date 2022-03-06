@@ -15,8 +15,8 @@ namespace DAL.Migrations
                 {
                     IdClass = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NameClass = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Classroom = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    NameClass = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    Classroom = table.Column<string>(type: "nvarchar(5)", maxLength: 5, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,7 +30,7 @@ namespace DAL.Migrations
                     IdStudent = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdClass = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     birth = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
