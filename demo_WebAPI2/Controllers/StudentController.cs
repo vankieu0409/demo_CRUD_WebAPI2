@@ -11,38 +11,43 @@ namespace demo_WebAPI2.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private ServiceOfController ss = new ServiceOfController();
+        private readonly ServiceOfController _serviceOfController;
+
+        public StudentController( ServiceOfController serviceOfController)
+        {
+            _serviceOfController = serviceOfController;
+        }
 
         [HttpGet("Get")]
         public List<InfoStudent> Get()
         {
-            return ss.GetInfoStudents();
+            return _serviceOfController.GetInfoStudents();
         }
 
         [HttpGet("Get/{id}")]
         public InfoStudent Get(int id)
         {
-            InfoStudent a = ss.GetInfoStudents().FirstOrDefault(c => c.IdStudent == id);
-            return a;
+            InfoStudent infoStudent = _serviceOfController.GetInfoStudents().FirstOrDefault(c => c.IdStudent == id);
+            return infoStudent;
         }
 
         [HttpPost("Add")]
         public List<InfoStudent> Add(InfoStudent a)
         {
             
-            return ss.AddInfoStudent(a);
+            return _serviceOfController.AddInfoStudent(a);
         }
 
         [HttpPut("Edit/{id}")]
         public List<InfoStudent> Edit(InfoStudent a)
         {
-            return ss.EditInfoStudent(a);
+            return _serviceOfController.EditInfoStudent(a);
         }
 
         [HttpDelete("Delete/{id}")]
         public List<InfoStudent> Delete(int id)
         {
-            return ss.DeleteInfoStudent(id);
+            return _serviceOfController.DeleteInfoStudent(id);
         }
 
     }
