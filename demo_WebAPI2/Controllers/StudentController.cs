@@ -11,7 +11,8 @@ namespace demo_WebAPI2.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private readonly ServiceOfController _serviceOfController;
+        private readonly ServiceOfController _serviceOfController;// Khai báo DI của Service of Controller
+
 
         public StudentController( ServiceOfController serviceOfController)
         {
