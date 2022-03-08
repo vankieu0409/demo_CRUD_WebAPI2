@@ -1,12 +1,16 @@
-﻿using demo_WebAPI2.DAL;
+﻿using DAL;
+using DAL.Service;
+using demo_WebAPI2.DAL;
+using demo_WebAPI2.DAL.Models;
 using demo_WebAPI2.Sevice;
+using demo_WebAPI2.Sevice.ModelsReturn;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-#region Dependency Injection (DI)
+#region Dependency Injection (DI): Tiêm sự phụ Thuộc
 
 //          - Thiết kế sao cho các dependency (phụ thuộc) của một đối tượng CÓ THỂ được đưa vào,
 //      tiêm vào đối tượng đó (Injection) khi nó cần tới (khi đối tượng khởi tạo).
@@ -35,6 +39,11 @@ builder.Services.AddScoped<ServiceOfController>(); // đây là Sử dụng Dele
 
 //      -- ServiceOfController: dịch vụ cần đăng ký( Kiểu (tên lớp) dịch vụ).
 
+//builder.Services.AddScoped<DbWebContext>();
+//builder.Services.AddScoped<IService<Class>, ServiceModels<Class>>();
+//builder.Services.AddScoped<IService<Student>, ServiceModels<Student>>();
+//builder.Services.AddScoped<InfoStudent>();
+
 
 #endregion
 
@@ -43,7 +52,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

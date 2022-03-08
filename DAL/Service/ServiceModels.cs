@@ -4,7 +4,7 @@ namespace DAL.Service;
 
 public class ServiceModels<T>:IService<T> where T : class
 {
-    private DbWebContext _dbContext;
+    private  DbWebContext _dbContext;
 
     public ServiceModels()
     {
