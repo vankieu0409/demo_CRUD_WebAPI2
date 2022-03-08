@@ -16,6 +16,7 @@ namespace demo_WebAPI2.Controllers
 
         public StudentController( ServiceOfController serviceOfController)
         {
+            //DI sẽ giúp tự động truyền vào serviceOfController và gán lại cho _serviceOfController sẽ  chỉ việc lấy về và gán vào biến  ko cần khởi tạo nữa
             _serviceOfController = serviceOfController;
         }
 
